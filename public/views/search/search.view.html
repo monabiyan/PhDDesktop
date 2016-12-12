@@ -1,0 +1,79 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Scholar Search</a>
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <!--<li><a href="#/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>-->
+                <div ng-switch="model.loggedin">
+                    <li ng-switch-when=false><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li ng-switch-when=true>
+
+                         <p><span class="navbar-brand "></span> {{model.username}}</p>
+                        <p ng-click="model.goToAuthorSummary()"><span class="navbar-brand "></span> As Author</p>
+                        <a href="#/landing"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--{{model}}-->
+{{model.pagenumber}}
+
+<div class="container-fluid">
+    <p> ARDS ventilation</p>
+
+    <div class="input-group input-lg">
+        <input ng-model="model.title" type="text" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+        <button ng-click= "model.searchArticleByTitle(model.title,model.pagenumber)" class="btn btn-secondary" type="button">Go!</button>
+        </span>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <!--<th>No.</th>-->
+                <th>Title</th>
+
+                <!--<th>Score</th>-->
+                <th>Author</th>
+                <th>Year</th>
+                <th> </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="article in model.articles">
+                <!--{{model.movie}}-->
+                <!--<td></td>-->
+
+                <td> <a ng-click="model.goToDetailPage(article.DOI,model.title,model.pagenumber)">{{article.title[0]}} </a></td>
+
+                <!--<td> {{movie.score}}</td>-->
+                <td>{{article.author[0].given}}{{' '}}{{article.author[0].family}}</td>
+                <td>{{article.indexed["date-parts"][0][0]}}</td>
+                <td><a href={{article.URL}} target="Starfall">Direct-Link</a></td>
+
+                <td ng-init="model.findColor(article.DOI)">
+
+                        {{model.color_selected}}
+
+                </td>
+
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div>
+    <ul class="pagination">
+
+        <li><a ng-click=model.searchArticleByTitle(model.title,model.pagenumber-10) href="#">previous</a></li>
+        <li><a ng-click=model.searchArticleByTitle(model.title,model.pagenumber+10) href="#">next</a></li>
+
+    </ul>
+</div>

@@ -1,0 +1,126 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Scholar Search</a>
+
+            <!--<ul class="nav navbar-nav">-->
+            <!--<li class="active"><a href="#">Home</a></li>-->
+            <!--<li><a href="#">Page 1</a></li>-->
+            <!--<li><a href="#">Page 2</a></li>-->
+            <!--</ul>-->
+            <ul class="nav navbar-nav navbar-right">
+                <!--<li><a href="#/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>-->
+                <div ng-switch="model.loggedin">
+                    <li ng-switch-when=false><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li ng-switch-when=true>
+                        <a href="#/landing"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        <a href="#/login"><span class="navbar-brand "></span> {{model.username}}</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+
+
+    <h1>
+        <a ng-click="model.goBackToSearchPage(model.title,model.pagenumber)" >
+            <span class="glyphicon glyphicon-chevron-left" style="color:#7252ff"></span>
+        </a>
+
+    </h1>
+
+
+    <div class="row">
+        <div class="col-xs-8">
+            <div>
+                <h2> {{model.article.message.title[0]}}</h2>
+            </div>
+
+            <div>
+                <h4>Author:   {{model.article.message.author[0].given}} {{  }}{{model.article.message.author[0].family}}</h4>
+            </div>
+
+            <div>
+                Type: {{model.article.message.type}}
+            </div>
+
+            <div>
+                Year: {{model.article.message.indexed["date-parts"][0][0]}}
+            </div>
+
+            <div>
+                Subject: {{model.article.message.subject[0]}}
+            </div>
+
+            <div>
+                URL: {{model.article.message.URL}}
+            </div>
+
+
+
+            <div>
+                Publisher: {{model.article.message.publisher}}
+            </div>
+
+
+        </div>
+        <div class="col-xs-4">
+            <img ng-src="{{model.article.Poster}}" height="300px">
+        </div>
+
+    </div>
+
+
+
+    <div class="padding-top-three">
+        <h6> Quality of research</h6>
+        <select class=" form-control" ng-model="model.eval1" ng-options="color for color in model.colors">
+
+        </select>
+    </div>
+
+
+    <div class="padding-top-three">
+        <h6> Easy To Understand</h6>
+        <select class=" form-control" ng-model="model.eval2" ng-options="color for color in model.colors">
+
+        </select>
+    </div>
+
+    <div class="padding-top-three">
+        <h6> Good English</h6>
+        <select class=" form-control" ng-model="model.eval3" ng-options="color for color in model.colors">
+
+        </select>
+    </div>
+
+    <div class="padding-top-three">
+        <h6> Relevance To your research</h6>
+        <select class=" form-control" ng-model="model.eval4" ng-options="color for color in model.colors">
+
+        </select>
+    </div>
+
+
+
+
+
+
+    <div class="padding-top-three">
+        <a ng-click="model.saveAndBackToDetails() " class="btn btn-primary btn-block ">Save Evaluation</a>
+    </div>
+    <div class="padding-top-three">
+        <a ng-click="model.cancel()" class="btn btn-success btn-block">Cancel</a>
+    </div>
+
+
+
+
+    <!--{{model.article}}-->
+
+</div>
+

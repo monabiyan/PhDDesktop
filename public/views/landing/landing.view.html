@@ -1,0 +1,39 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Scholar Search</a>
+
+            <!--<ul class="nav navbar-nav">-->
+            <!--<li class="active"><a href="#">Home</a></li>-->
+            <!--<li><a href="#">Page 1</a></li>-->
+            <!--<li><a href="#">Page 2</a></li>-->
+            <!--</ul>-->
+            <ul class="nav navbar-nav navbar-right">
+                <!--<li><a href="#/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>-->
+                <div ng-switch="model.loggedin">
+                    <li ng-switch-when=false><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li ng-switch-when=true>
+                        <a href="#/landing"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        <a href="#/login"><span class="navbar-brand "></span> {{model.username}}</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--{{model}}-->
+{{model}}
+<h1> Landing Page  :)</h1>
+<div class="container-fluid">
+    <p> ARDS ventilation</p>
+    <!--<p>ex. ARDS ventlation pressure volume</p>-->
+    <!--{{model.articles}}-->
+    <div class="input-group input-lg">
+        <input ng-model="model.title" type="text" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+        <button ng-click= "model.searchArticleByTitle(model.title)" class="btn btn-secondary" type="button">Go!</button>
+        </span>
+    </div>
+
+
+</div>

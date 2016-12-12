@@ -1,0 +1,28 @@
+
+
+
+<div class="container padding-top-three">
+    <ul class="list-group padding-top-three">
+        <div class="container">
+
+            <h1> Your Papers : </h1>
+            <div ng-repeat="DOI in model.DOIs">
+
+                <li class="list-group-item">
+                    {{DOI}}
+                    <!--<p>USER {{evaluation.userId}}        AT DATE : {{evaluation.dateCreated}}</p>-->
+                    <!--<p>QUALITY OF RESEARCH = {{evaluation.eval1}}</p>-->
+                    <!--<p>EASY TO UNDERSTAND = {{evaluation.eval2}}</p>-->
+                    <!--<p>ENGLISH FLUENCY = {{evaluation.eval3}}</p>-->
+                    <!--<p>RELEVANCE TO MY RESEARCH {{evaluation.eval4}}</p>-->
+
+                    <!--<a ng-click="model.goToEditNote(note._id)"><span class="glyphicon glyphicon-cog pull-right"></span></a>-->
+                </li>
+            </div>
+            <a ng-click="model.backToSearch()" class="btn btn-primary btn-block">Back</a>
+        </div>
+    </ul>
+
+</div>
+
+
