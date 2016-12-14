@@ -45,7 +45,7 @@
 
                 <!--<select class=" form-control" ng-model="model.color_selected" ng-options="color for color in model.colors"></select>-->
 
-                <div ng-switch="model.color_selected">
+                <div ng-switch="model.color_selected" ng-show="model.loggedin">
                     <div ng-switch-when='1'><p> </p><h2><span class="label label-default lab">&nbsp current color  &nbsp</span></h2></div>
                     <div ng-switch-when='2'><p>  </p><h2><span class="label label-primary lab">&nbsp current color &nbsp</span> </h2></div>
                     <div ng-switch-when='3'><p>  </p><h2><span class="label label-success lab">&nbsp current color &nbsp</span></h2></div>
@@ -55,7 +55,7 @@
 
                 <br>
 
-                <div class="dropdown">
+                <div class="dropdown" ng-show="model.loggedin">
                     <button class="btn btn-default dropdown-toggle fa fa-thumb-tack"  aria-hidden="true" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         &nbsp choose color &nbsp<span class="caret"></span></button>
                     <ul class="dropdown-menu" >
@@ -70,7 +70,7 @@
 
                 <!--<button ng-click="model.updateColor(model.color_selected)" class="btn  dropdown-toggle btn-primary btn-sm btn-block">Save Color</button>-->
 
-                <button ng-click="model.goToNewNote()" class="btn btn-default btn-bg fa fa-pencil "  aria-hidden="true">&nbsp &nbsp New Note &nbsp &nbsp</button>
+                <button  ng-show="model.loggedin" ng-click="model.goToNewNote()" class="btn btn-default btn-bg fa fa-pencil "  aria-hidden="true">&nbsp &nbsp New Note &nbsp &nbsp</button>
 
         </div>
     </div>
@@ -110,7 +110,7 @@
 
         <div class="col-xs-6 col-md-4 text-center  ">
             <br>
-            <div  >
+            <div ng-show="model.loggedin" >
                 <button ng-click="model.goToEvaluationPage()" class="btn btn-default btn-bg fa fa-heart" aria-hidden="true">&nbsp&nbsp&nbspEvaluate&nbsp&nbsp&nbsp</button>
                 <br><br>
                 <button ng-click="model.authorshipRequest()" type="button" class="btn btn-default btn-bg fa fa-user " aria-hidden="true" id="myBtn"> &nbsp I am  <b>co-author</b> of this paper &nbsp</button>
