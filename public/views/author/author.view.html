@@ -29,8 +29,8 @@
             <br><br>
             <div ng-repeat="DOI in model.DOIs">
 
-                <li  class="list-group-item">
-                    <!--ng-href="#/details/{{DOI.split(',')[0]}}/{{model.title}}/{{model.pagenumber}}/{{model.userId}}"-->
+                <a ng-href="#/details/{{DOI.split(',')[0]}}/{{DOI.split(',')[1]}}/0/{{model.userId}}"  class="list-group-item mouse_click">
+
 
                     {{DOI.split(',')[1]}}
                     <!--<p>USER {{evaluation.userId}}        AT DATE : {{evaluation.dateCreated}}</p>-->
@@ -40,7 +40,7 @@
                     <!--<p>RELEVANCE TO MY RESEARCH {{evaluation.eval4}}</p>-->
 
                     <!--<a ng-click="model.goToEditNote(note._id)"><span class="glyphicon glyphicon-cog pull-right"></span></a>-->
-                </li>
+                </a>
             </div>
             <br>
             <br>
