@@ -4,16 +4,7 @@
 module.exports = function(app,model) {
 
 
-    // var websites = [
-    //
-    //     { _id: "123", name: "Facebook",    developerId: "456", description: "Lorem" },
-    //     { _id: "234", name: "Tweeter",     developerId: "456", description: "Lorem" },
-    //     { _id: "456", name: "Gizmodo",     developerId: "456", description: "Lorem" },
-    //     { _id: "567", name: "Tic Tac Toe", developerId: "123", description: "Lorem" },
-    //     { _id: "678", name: "Checkers",    developerId: "123", description: "Lorem" },
-    //     { _id: "789", name: "Chess",       developerId: "234", description: "Lorem" }
-    //
-    // ];
+
 
 
 
@@ -23,8 +14,10 @@ module.exports = function(app,model) {
 
     // app.get("/api/user/:uid/note", findWebsitesByUser);
     app.get("/api/find/color/:colorId", findColorById);
+    app.get("/api/findall/colors/:userId",findColorsByUserId);
     app.put("/api/update/color", updateColor);
     app.delete("/api/delete/:colorId", deleteColor);
+
 
 
 
@@ -82,6 +75,11 @@ module.exports = function(app,model) {
     {
         var colorId = req.params.colorId;
         model.colorModel.deleteWebsite(colorId).then(function(color){res.json(color);});
+    }
+    function findColorsByUserId(req,res)
+    {
+        var userId=req.params.userId;
+        model.colorModel.findAllColorsByUserId(userId).then(function(colors){res.json(colors);});
     }
 
 };

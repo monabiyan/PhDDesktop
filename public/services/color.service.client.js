@@ -12,6 +12,7 @@
             createColor:createColor,
             findColorByUserId_ArticleDOI:findColorByUserId_ArticleDOI,
             findColorById:findColorById,
+            findColorsByUserId:findColorsByUserId,
             updateColor:updateColor,
             deleteColor:deleteColor
         };
@@ -36,6 +37,9 @@
         }
         function deleteColor(colorId) {
             return $http.delete("/api/delete/"+colorId);
+        }
+        function findColorsByUserId(userId){
+            return $http.get("/api/findall/colors/"+userId);
         }
     }
 

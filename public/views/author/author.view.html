@@ -20,16 +20,24 @@
     </div>
 </nav>
 
+
+
+
+
+
+
+
 <div class="container padding-top-three">
+    <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"> Papers you are the  <b>author</b> </i>
     <ul class="list-group padding-top-three">
         <div class="container">
 
-            <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"> Your Paper Titles that you are the author </i>
+
 
             <br><br>
             <div ng-repeat="DOI in model.DOIs">
 
-                <a ng-href="#/details/{{DOI.split(',')[0]}}/{{DOI.split(',')[1]}}/0/{{model.userId}}"  class="list-group-item mouse_click">
+                <a ng-href="#/details/{{DOI.split(',')[0]}}/{{DOI.split(',')[1]}}/0/{{model.userId}}"  class="list-group-item mouse_click" style="color: #1b6d85">
 
 
                     {{DOI.split(',')[1]}}
@@ -42,12 +50,61 @@
                     <!--<a ng-click="model.goToEditNote(note._id)"><span class="glyphicon glyphicon-cog pull-right"></span></a>-->
                 </a>
             </div>
-            <br>
-            <br>
-            <a ng-click="model.backToSearch()" class="btn btn-primary btn-block fa fa-chevron-left">&nbsp&nbspBack</a>
-        </div>
+            </div>
     </ul>
 
+
+
+
+<br><br>
+
+<hr>
+
+<br><br>
+
+
+
+    <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"> Papers you have  <b>visited</b> </i>
+    <br><br>
+<table class="table table-striped table-bordered table-hover ">
+    <thead class="thead-inverse  ">
+    <tr class="text-center">
+        <th class="text-center">Article Name</th>
+        <th class="text-center">Color</th>
+
+        <!--<th>Image</th>-->
+    </tr>
+    </thead>
+    <tbody>
+
+
+
+    <tr ng-repeat="color in model.colors" class="text-center" >
+
+
+        <td>{{color.articleTitle}}</td>
+
+        <td >
+
+            <div ng-switch="{{color.colorNo}}">
+                <div ng-switch-when='1'><p> </p><h5><span class="label label-default lab">&nbsp   &nbsp</span></h5></div>
+                <div ng-switch-when='2'><p>  </p><h5><span class="label label-primary lab">&nbsp  &nbsp</span> </h5></div>
+                <div ng-switch-when='3'><p>  </p><h5><span class="label label-success lab">&nbsp  &nbsp</span></h5></div>
+                <div ng-switch-when='4'><p>  </p><h5><span class="label label-warning lab">&nbsp  &nbsp</span></h5></div>
+                <div ng-switch-when='5'><p>  </p><h5><span class="label label-danger lab">&nbsp  &nbsp</span></h5></div>
+            </div>
+
+
+        </td>
+
+    </tr>
+
+    </tbody>
+</table>
+
+    <br>
+    <br>
+    <a ng-click="model.backToSearch()" class="btn btn-primary btn-block fa fa-chevron-left">&nbsp&nbspBack</a>
 </div>
 
 

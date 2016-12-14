@@ -159,7 +159,7 @@
 
         function updateColor(color_value) {
 
-            cc = {colorNo: color_value, userId: vm.userId, DOI1: vm.DOI1, DOI2: vm.DOI2};
+            cc = {colorNo: color_value, userId: vm.userId, DOI1: vm.DOI1, DOI2: vm.DOI2,articleTitle:vm.article.message.title[0]};
             // console.log(cc);
             ColorService.findColorByUserId_ArticleDOI(vm.userId, vm.DOI1, vm.DOI2).success(function (colorObj) {
 
@@ -168,11 +168,13 @@
                         console.log('hamid');
                         console.log(colorObj2);
                         vm.color_selected=color_value;
+                        window.location.reload();
                     });
 
                 }
                 else {
                     colorObj.colorNo=color_value;
+                    colorObj.articleTitle=vm.article.message.title[0];
                     ColorService.updateColor(colorObj).success(function(colorObj2){
 
                                     console.log('iman');

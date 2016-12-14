@@ -7,7 +7,7 @@
         .controller("AuthorController", AuthorController);
 
 
-    function AuthorController(UserService,$routeParams,$location,NoteService) {
+    function AuthorController(UserService,$routeParams,$location,NoteService,ColorService) {
 
 
         console.log("hello from controller");
@@ -21,14 +21,16 @@
 
 
         vm.userId=$routeParams.userId;
-        vm.loggedin=false;
-
-        vm.pagenumber=$routeParams.pagenumber;
-        vm.title=$routeParams.title;
 
 
 
-        vm.note={userId:vm.userId,DOI1:vm.DOI1,DOI2:vm.DOI2};
+
+        // vm.pagenumber=$routeParams.pagenumber;
+        // vm.title=$routeParams.title;
+
+
+
+        // vm.note={userId:vm.userId,DOI1:vm.DOI1,DOI2:vm.DOI2};
 
 
         function onlyUnique(value, index, self) {
@@ -52,6 +54,29 @@
 
         }
         init();
+
+
+        function init2(){
+            console.log('shaghayegh');
+            if (vm.userId!=null){
+
+                ColorService.findColorsByUserId(vm.userId).success(function(colorObjs){
+                    vm.colors=colorObjs;
+                    // console.log('babbbba');
+                    // console.log(user);
+                    // vm.DOIs=user.DOIs.filter( onlyUnique );
+
+                    // console.log(vm.DOIs);
+                    return('0');
+                })
+            }
+
+
+        }
+        init2();
+
+
+
 
         function backToSearch(){
             $location.url("/landing/"+vm.userId);

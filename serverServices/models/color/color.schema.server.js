@@ -10,6 +10,7 @@ module.exports = function() {
         DOI1:String,
         DOI2:String,
         userId:{type: mongoose.Schema.Types.ObjectId, ref : "UserModel"},
+        articleTitle:String,
 
         dateCreated : {type:Date,default:Date.now()}
         // widgets : [{type: mongoose.Schema.Types.ObjectId, ref:'WidgetModel'}]

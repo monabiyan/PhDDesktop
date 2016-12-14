@@ -14,6 +14,7 @@ module.exports = function () {
         updateColor: updateColor,
         deleteColor: deleteColor,
         findColorByUserId_ArticleDOI:findColorByUserId_ArticleDOI,
+        findAllColorsByUserId:findAllColorsByUserId,
         setModel: setModel
     };
     return api;
@@ -78,5 +79,9 @@ module.exports = function () {
     {
         return(ColorModel.remove({_id:colorId}));
     }
-
+    function findAllColorsByUserId(userId_)
+    {
+        return(ColorModel.find({userId:userId_}));
+    }
 };
+
