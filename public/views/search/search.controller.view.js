@@ -17,7 +17,9 @@
             vm.goToDetailPage=goToDetailPage;
             vm.findColor=findColor;
             vm.goToAuthorSummary=goToAuthorSummary;
-            vm.pagenumber=parseInt($routeParams.page);
+            vm.pagenumber=parseInt($routeParams.pagenumber);
+            console.log(vm.pagenumber);
+
 
 
 
@@ -35,6 +37,7 @@
                         return('0');
                     })
                 }
+
 
             }
             init();
@@ -62,6 +65,15 @@
                 // console.log(vm.pagenumber);
                 // console.log('david');
             }
+            if (vm.pagenumber==0){
+                console.log('Hashem');
+                vm.firstPage=true;
+            }
+            if (vm.pagenumber!=0){
+                console.log('Hashem');
+                vm.firstPage=false;
+            }
+
 
             if (vm.title!=null)
             {
@@ -72,8 +84,8 @@
 
 
             function searchArticleByTitle(title, pagenumber) {
-                console.log(title);
-                var url="http://api.crossref.org/works?query="+title+"&rows=10"+"&offset="+pagenumber;
+                console.log(pagenumber);
+                var url="https://api.crossref.org/works?query="+title+"&rows=20"+"&offset="+pagenumber+"&filter=has-orcid:true";
 
                 response=MitService.searchArticleByTitle(url);
 
@@ -84,8 +96,15 @@
                         if ($routeParams.title==null)
                         {
 
+                            if (vm.userId==null)
+                            {
+                                $location.url("/search/" + title + "/" + pagenumber);
+                            }
+                            if (vm.userId!=null)
 
-                            $location.url("/search/" + title + "/" + pagenumber);
+                            {
+                                $location.url("/search/" + title + "/" + pagenumber+"/"+vm.userId);
+                            }
 
                         }
                     })
@@ -94,6 +113,8 @@
 
 
             function goToDetailPage(DOI,title,pagenumber){
+
+                console.log('sandy');
                 if (vm.userId!=null) {
                     $location.url("/details/"+DOI+"/"+title+"/"+pagenumber+"/"+vm.userId);
                 }
@@ -103,16 +124,18 @@
             }
 
             function findColor(DOI){
+                if (vm.userId!=null) {
+                    vm.color_selected=[];
+                    DOI1 = DOI.split("/")[0];
+                    DOI2 = DOI.split("/")[1];
+                    console.log(DOI1, DOI2);
+                    ColorService.findColorByUserId_ArticleDOI(vm.userId, DOI1, DOI2).success(function (color) {
+                        // console.log(color);
+                        vm.color_selected.push(color.colorNo);
 
-                DOI1=DOI.split("/")[0];
-                DOI2=DOI.split("/")[1];
-                console.log(DOI1,DOI2);
-                ColorService.findColorByUserId_ArticleDOI(vm.userId, DOI1, DOI2).success(function (color) {
-                    // console.log(color);
-                    vm.color_selected = color.colorNo;
-
-                    return ('0');
-                })
+                        return ('0');
+                    })
+                }
             }
             function goToAuthorSummary(){
                 $location.url("/author/"+vm.userId);

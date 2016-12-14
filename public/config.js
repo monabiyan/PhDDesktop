@@ -68,8 +68,8 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/newnote/:DOI1/:DOI2/:title/:pagenumber/:userId",{
-                templateUrl: "./views/notes/author.view.html",
+            .when("/newnote/:DOI1/:DOI2/:title/:pagenumber/:userId/:article_name",{
+                templateUrl: "./views/notes/newnotes.view.html",
                 controller: "NewNoteController",
                 controllerAs: "model"
             })
@@ -79,12 +79,12 @@
                 controllerAs: "model"
             })
 
-            .when("/evaluation/:DOI1/:DOI2/:title/:pagenumber/:userId", {
+            .when("/evaluation/:DOI1/:DOI2/:title/:pagenumber/:userId/:username", {
                 templateUrl: "./views/evaluation/evaluation.view.html",
                 controller: "EvaluationController",
                 controllerAs: "model"
             })
-            .when("/author/:userId", {
+            .when("/author/:userId/", {
                 templateUrl: "./views/author/author.view.html",
                 controller: "AuthorController",
                 controllerAs: "model"

@@ -16,7 +16,7 @@ module.exports = function(app,model) {
     app.get("/api/user", findUser);
     app.get("/api/user/:uid", findUserById);
     app.put("/api/user/update", updateUser);
-    app.put("/api/user/addDOI/:userId/:DOI1/:DOI2",addDOItoUser);
+    app.put("/api/user/addDOI/:userId/:DOI1/:DOI2/:Title",addDOItoUser);
     app.delete("/api/user/:uid", deleteUser);
 
 
@@ -149,8 +149,9 @@ function addDOItoUser(req,res){
     var userId=req.params.userId;
     var DOI1=req.params.DOI1;
     var DOI2=req.params.DOI2;
+    var article_title=req.params.Title;
     DOI=DOI1+"/"+DOI2;
-    model.userModel.addDOItoUser(userId,DOI).then(function(user){res.send(user);});
+    model.userModel.addDOItoUser(userId,DOI,article_title).then(function(user){res.send(user);});
 }
 
 };

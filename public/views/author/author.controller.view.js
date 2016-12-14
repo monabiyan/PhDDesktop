@@ -22,13 +22,13 @@
 
         vm.userId=$routeParams.userId;
         vm.loggedin=false;
-        vm.DOI1=$routeParams.DOI1;
-        vm.DOI2=$routeParams.DOI2;
+
         vm.pagenumber=$routeParams.pagenumber;
         vm.title=$routeParams.title;
 
 
-        vm.note={userId:vm.userId,DOI1:vm.DOI1,DOI2:vm.DOI2}
+
+        vm.note={userId:vm.userId,DOI1:vm.DOI1,DOI2:vm.DOI2};
 
 
         function onlyUnique(value, index, self) {
@@ -37,6 +37,7 @@
 
 
         function init(){
+            console.log('shaghayegh');
             if (vm.userId!=null){
                 vm.loggedin=true;
                 UserService.findUserById(vm.userId).success(function(user){

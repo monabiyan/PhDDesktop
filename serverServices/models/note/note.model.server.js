@@ -81,12 +81,15 @@ module.exports = function () {
 
 
     function updateNote(note){
+        console.log('hassan');
+        console.log(note);
         return NoteModel
             .update(
                 {
                     _id: note._id
                 },
                 {
+                    name:note.name,
                     content: note.content,
                     _user: note._user,
                     _article:note._article,

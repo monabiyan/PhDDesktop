@@ -1,15 +1,38 @@
 
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid color: black">
+        <div class="navbar-header padding-top-half">
+            <a class="navbar-brand" ng-click="model.backToSearch()">PHDdesktop</a>
+        </div>
 
+        <ul class="nav navbar-nav navbar-right padding-top-one  margin-right-one">
+            <!--<li><a href="#/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>-->
+            <div ng-switch="model.loggedin">
+                <li ng-switch-when=false><a href="#/login" class="white"><span class="glyphicon glyphicon-log-in"></span> Login &nbsp &nbsp &nbsp</a></li>
+                <li ng-switch-when=true class="margin-right-one">
+                    <a ng-href=" #/author/{{model.userId}}"><span class="navbar-brand "></span> {{model.username}}</a>
+                    <!--<p ng-click="model.goToAuthorSummary()"><span class="navbar-brand "></span> As Author</p>-->
+                    <a href="#/landing"><span class="glyphicon glyphicon-log-out margin-left-one"></span> Logout</a>
+                </li>
+            </div>
+        </ul>
+
+    </div>
+</nav>
 
 <div class="container padding-top-three">
     <ul class="list-group padding-top-three">
         <div class="container">
 
-            <h1> Your Papers : </h1>
+            <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"> Your Paper Titles that you are the author </i>
+
+            <br><br>
             <div ng-repeat="DOI in model.DOIs">
 
-                <li class="list-group-item">
-                    {{DOI}}
+                <li  class="list-group-item">
+                    <!--ng-href="#/details/{{DOI.split(',')[0]}}/{{model.title}}/{{model.pagenumber}}/{{model.userId}}"-->
+
+                    {{DOI.split(',')[1]}}
                     <!--<p>USER {{evaluation.userId}}        AT DATE : {{evaluation.dateCreated}}</p>-->
                     <!--<p>QUALITY OF RESEARCH = {{evaluation.eval1}}</p>-->
                     <!--<p>EASY TO UNDERSTAND = {{evaluation.eval2}}</p>-->
@@ -19,7 +42,9 @@
                     <!--<a ng-click="model.goToEditNote(note._id)"><span class="glyphicon glyphicon-cog pull-right"></span></a>-->
                 </li>
             </div>
-            <a ng-click="model.backToSearch()" class="btn btn-primary btn-block">Back</a>
+            <br>
+            <br>
+            <a ng-click="model.backToSearch()" class="btn btn-primary btn-block fa fa-chevron-left">&nbsp&nbspBack</a>
         </div>
     </ul>
 

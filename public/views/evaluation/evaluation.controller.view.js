@@ -35,6 +35,7 @@
         vm.loggedin = false;
 
         vm.colors = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+        vm.username= $routeParams.username;
 
 
         function init1() {
@@ -74,13 +75,15 @@
             if (vm.loggedin == true) {
 
               evaluation={
+
                   eval1:vm.eval1,
                   eval2:vm.eval2,
                   eval3:vm.eval3,
                   eval4:vm.eval4,
                   DOI1:vm.DOI1,
                   DOI2:vm.DOI2,
-                  userId:vm.userId};
+                  userId:vm.userId,
+                    username:vm.username};
 
 
                 EvaluationService.createEvaluation(evaluation).success(function(evaluationObj)

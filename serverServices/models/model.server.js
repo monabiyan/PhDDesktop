@@ -4,7 +4,8 @@
 module.exports = function () {
 
     var mongoose = require('mongoose');
-    mongoose.connect('mongodb://localhost/project');
+    var connectionString = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/project';
+    mongoose.connect(connectionString);
 
     var userModel = require("./user/user.model.server.js")();
     var noteModel = require("./note/note.model.server.js")();

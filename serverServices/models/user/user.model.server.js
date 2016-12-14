@@ -85,12 +85,14 @@ module.exports = function () {
         return UserModel.create(user);
     }
 
-    function addDOItoUser(userId,DOI){
+    function addDOItoUser(userId,DOI,article_title){
+
         console.log('Shahnaz');
+        console.log(article_title);
         return UserModel.findById(userId).then(function(userObj){
 
 
-            userObj.DOIs.push(DOI);
+            userObj.DOIs.push([DOI,article_title]);
             userObj.save();
             console.log(userObj);
             return(userObj)

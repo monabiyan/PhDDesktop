@@ -1,137 +1,234 @@
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Scholar Search</a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid color: black">
+        <div class="navbar-header ">
+            <a ng-href="#/search/{{model.title}}/{{model.pagenumber}}/{{model.userId}}" >
+                <h4><span class="glyphicon glyphicon-chevron-left" style="color:whitesmoke"></span></h4>
+            </a>
 
-            <!--<ul class="nav navbar-nav">-->
-            <!--<li class="active"><a href="#">Home</a></li>-->
-            <!--<li><a href="#">Page 1</a></li>-->
-            <!--<li><a href="#">Page 2</a></li>-->
-            <!--</ul>-->
-            <ul class="nav navbar-nav navbar-right">
-                <!--<li><a href="#/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>-->
-                <div ng-switch="model.loggedin">
-                    <li ng-switch-when=false><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    <li ng-switch-when=true>
-                        <a href="#/landing"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-                        <a href="#/login"><span class="navbar-brand "></span> {{model.username}}</a>
-                    </li>
-                </div>
-            </ul>
+
+
         </div>
+
+        <ul class="nav navbar-nav navbar-right padding-top-one  margin-right-one">
+            <!--<li><a href="#/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>-->
+            <div ng-switch="model.loggedin">
+                <li ng-switch-when=false><a href="#/login" class="white"><span class="glyphicon glyphicon-log-in"></span> Login &nbsp &nbsp &nbsp</a></li>
+                <li ng-switch-when=true class="margin-right-one">
+                    <a ng-href=" #/author/{{model.userId}}"><span class="navbar-brand"></span> {{model.username}}</a>
+
+                    <a href="#/landing"><span class="glyphicon glyphicon-log-out margin-left-one"></span> Logout</a>
+                </li>
+            </div>
+        </ul>
+
     </div>
 </nav>
 
 
-<div class="container-fluid">
+<div class="container-fluid padding-top-tow padding-bottom-one">
+    <br><br><br>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-8">
+
+            <div class=" text-center">
+                <div>
+                    <h2 class="mohsen_font1 jumbotron"> {{model.article.message.title[0]}}</h2>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xs-6 col-md-4 text-center  ">
 
 
-    <h1>
-        <a ng-click="model.goBackToSearchPage(model.title,model.pagenumber)" >
-            <span class="glyphicon glyphicon-chevron-left" style="color:#7252ff"></span>
-        </a>
 
-    </h1>
+                <!--<select class=" form-control" ng-model="model.color_selected" ng-options="color for color in model.colors"></select>-->
+
+                <div ng-switch="model.color_selected">
+                    <div ng-switch-when='1'><p> </p><h2><span class="label label-default lab">&nbsp current color  &nbsp</span></h2></div>
+                    <div ng-switch-when='2'><p>  </p><h2><span class="label label-primary lab">&nbsp current color &nbsp</span> </h2></div>
+                    <div ng-switch-when='3'><p>  </p><h2><span class="label label-success lab">&nbsp current color &nbsp</span></h2></div>
+                    <div ng-switch-when='4'><p>  </p><h2><span class="label label-warning lab">&nbsp current color &nbsp</span></h2></div>
+                    <div ng-switch-when='5'><p>  </p><h2><span class="label label-danger lab">&nbsp current color &nbsp</span></h2></div>
+                </div>
+
+                <br>
+
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle fa fa-thumb-tack"  aria-hidden="true" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        &nbsp choose color &nbsp<span class="caret"></span></button>
+
+
+                    <ul class="dropdown-menu" >
+                        <li ><a  ng-click="model.updateColor('1')"><span class="label label-default lab text-center mouse_click">&nbsp &nbsp </span></a></li>
+                        <li ><a  ng-click="model.updateColor('2')"><span class="label label-primary lab mouse_click">&nbsp &nbsp</span></a></li>
+                        <li ><a  ng-click="model.updateColor('3')"><span class="label label-success lab mouse_click">&nbsp &nbsp</span></a></li>
+                        <li ><a  ng-click="model.updateColor('4')"><span class="label label-warning lab mouse_click">&nbsp &nbsp</span></a></li>
+                        <li ><a  ng-click="model.updateColor('5')"><span class="label label-danger lab mouse_click">&nbsp &nbsp</span></a></li>
+                    </ul>
+                </div>
+                <br><br><br>
+
+                <!--<button ng-click="model.updateColor(model.color_selected)" class="btn  dropdown-toggle btn-primary btn-sm btn-block">Save Color</button>-->
+
+                <button ng-click="model.goToNewNote()" class="btn btn-default btn-bg fa fa-pencil "  aria-hidden="true">&nbsp &nbsp New Note &nbsp &nbsp</button>
+
+        </div>
+    </div>
+
+
 
 
     <div class="row">
-        <div class="col-xs-8">
-            <div>
-                <h2> {{model.article.message.title[0]}}</h2>
-            </div>
+        <div class="col-xs-12 col-sm-6 col-md-8">
+            <div class="padding-top-three">
+                <table class="table ">
+                    <thead class="thead-inverse ">
+                    <tr>
+                        <th>Author</th>
+                        <th>Type</th>
+                        <th>Publisher</th>
+                        <th>Year</th>
+                        <th>Paper Link</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <!--<th scope="row">1</th>-->
+                        <td>{{model.article.message.author[0].given}} {{  }}{{model.article.message.author[0].family}}</td>
+                        <td>{{model.article.message.type}}</td>
+                        <td>{{model.article.message.publisher}}</td>
+                        <td>{{model.article.message.indexed["date-parts"][0][0]}}</td>
+                        <td><a href="{{model.article.message.URL}}" target="Starfall">URL</a></td>
 
-            <div>
-                <h4>Author:   {{model.article.message.author[0].given}} {{  }}{{model.article.message.author[0].family}}</h4>
-            </div>
-
-            <div>
-                Type: {{model.article.message.type}}
-            </div>
-
-            <div>
-                Year: {{model.article.message.indexed["date-parts"][0][0]}}
-            </div>
-
-            <div>
-                Subject: {{model.article.message.subject[0]}}
-            </div>
-
-            <div>
-                URL: {{model.article.message.URL}}
-            </div>
-
-
-
-            <div>
-                Publisher: {{model.article.message.publisher}}
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
 
         </div>
-        <div class="col-xs-4">
-            <img ng-src="{{model.article.Poster}}" height="300px">
+
+        <div class="col-xs-6 col-md-4 text-center  ">
+            <br>
+            <div  >
+                <button ng-click="model.goToEvaluationPage()" class="btn btn-default btn-bg fa fa-heart" aria-hidden="true">&nbsp&nbsp&nbspEvaluate&nbsp&nbsp&nbsp</button>
+                <br><br>
+                <button ng-click="model.authorshipRequest()" type="button" class="btn btn-default btn-bg fa fa-user " aria-hidden="true" id="myBtn"> &nbsp I am  <b>co-author</b> of this paper &nbsp</button>
+            </div>
+            <br><br>
+            <div ng-show="model.authorship_request" >
+                <form >
+                    <div class="form-group">
+                        <label for="Name">please verify DOI of this paper </label>
+                        <input ng-model="model.authorInfo" class="form-control" id="Name" placeholder="{{model.DOI1}}/{{model.DOI2}}">
+                        </input>
+                    </div>
+                </form>
+                <button class="btn btn-success btn-block" ng-click="model.checkAuthor(model.authorInfo)"> Verify DOI ID</button>
+                <br>
+                <p> sample DOI ID :</p>
+                <p>{{model.DOI1}}/{{model.DOI2}}</p>
+            </div>
+
+            <div ng-show="model.DOIcheck==true" class="alert alert-success" role="alert">
+                    Authorship is successfully verified and added to your paper list.
+            </div>
+            <div ng-show="model.DOIcheck==false" class="alert alert-danger" role="alert">
+                DOI is not correct!
+            </div>
+
+
         </div>
 
     </div>
 
-    <a ng-click="model.goToNewNote()" class="btn btn-primary btn-block">New Note</a>
-    <a ng-click="model.login(model.user.username, model.user.password)"
-       class="btn btn-primary btn-block ">Rate</a>
 
-    <div class="padding-top-three">
 
-            <select class=" form-control" ng-model="model.color_selected" ng-options="color for color in model.colors">
 
-            </select>
+
+    <br><br>
+
+
+
+
+
+
+    <div ng-show="model.loggedin">
+
+            <hr class="padding-top-three">
+            <h3 style="color: #d86000"> {{model.username}}'s Notes</h3>
+
+
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-inverse ">
+                <tr >
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Subject</th>
+                    <th class="text-center">Content</th>
+                    <th class="text-center">Edit Note</th>
+                    <!--<th>Image</th>-->
+                </tr>
+                </thead>
+                <tbody>
+
+
+
+                        <tr ng-repeat="note in model.notes" >
+
+                            <td class="text-center">{{note.dateCreated}}</td>
+                            <td class="text-center">{{note.name}}</td>
+                            <td >{{note.content}}</td>
+                            <td class="text-center"><a ng-click="model.goToEditNote(note._id)"><span class="glyphicon glyphicon-cog "></span></a></td>
+
+
+                        </tr>
+
+                </tbody>
+            </table>
     </div>
 
-    <a ng-click="model.updateColor(model.color_selected)" class="btn btn-primary btn-block">Save Color</a>
-    <a ng-click="model.goToEvaluationPage()" class="btn btn-success btn-block">Evaluate</a>
-    <a ng-click="model.goToEvaluationPage()" class="btn btn-success btn-block">I am co-Author of this paper</a>
+    <hr class="padding-top-three">
+    <h3 style="color: #d86000"> Reviews</h3>
+
     <div >
-        <form >
-            <div class="form-group">
-                <label for="Name">Website Name</label>
-                <input ng-model="model.authorInfo" class="form-control" id="Name" placeholder="Blogger">
-                </input>
-            </div>
-        </form>
-        <a class="btn btn-success btn-block"
-           ng-click="model.checkAuthor(model.authorInfo)"> Check Author Info</a>
+        <table class="table table-striped table-bordered table-hover ">
+            <thead class="thead-inverse  ">
+            <tr class="text-center">
+                <th class="text-center">Date</th>
+                <th class="text-center">User</th>
+                <th class="text-center">Quality of research</th>
+                <th class="text-center">Relevance To user's research</th>
+                <th class="text-center">Easy To Understand</th>
+                <th class="text-center">How Excited the usaer became with this paper?</th>
+                <!--<th>Image</th>-->
+            </tr>
+            </thead>
+            <tbody>
+
+
+
+            <tr ng-repeat="evaluation in model.evaluations" class="text-center" >
+
+                <td style="color: darkblue">{{evaluation.dateCreated}}</td>
+                <td style="color: crimson">{{evaluation.username}} </td>
+                <td>{{evaluation.eval1}}</td>
+                <td>{{evaluation.eval2}}</td>
+                <td>{{evaluation.eval3}}</td>
+                <td>{{evaluation.eval4}}</td>
+
+            </tr>
+
+            </tbody>
+        </table>
     </div>
-    <p>{{model.DOI1}}/{{model.DOI2}}</p>
-    <ul class="list-group padding-top-three">
-        <div class="container">
-            <div ng-repeat="note in model.notes">
-
-                <li class="list-group-item">
-                    <a >{{note.content}}</a>
-                    <a ng-click="model.goToEditNote(note._id)"><span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-            </div>
-        </div>
-    </ul>
-
-    <ul class="list-group padding-top-three">
-        <div class="container">
-            <div ng-repeat="evaluation in model.evaluations">
-
-                <li class="list-group-item">
-                    <p>USER {{evaluation.userId}}        AT DATE : {{evaluation.dateCreated}}</p>
-                    <p>QUALITY OF RESEARCH = {{evaluation.eval1}}</p>
-                    <p>EASY TO UNDERSTAND = {{evaluation.eval2}}</p>
-                    <p>ENGLISH FLUENCY = {{evaluation.eval3}}</p>
-                    <p>RELEVANCE TO MY RESEARCH {{evaluation.eval4}}</p>
-
-                    <!--<a ng-click="model.goToEditNote(note._id)"><span class="glyphicon glyphicon-cog pull-right"></span></a>-->
-                </li>
-            </div>
-        </div>
-    </ul>
 
 
-    <!--{{model.article}}-->
+
+
+
+
 
 </div>
 

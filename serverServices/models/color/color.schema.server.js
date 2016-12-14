@@ -9,9 +9,9 @@ module.exports = function() {
         colorNo: String,
         DOI1:String,
         DOI2:String,
-        userId:{type: mongoose.Schema.Types.ObjectId, ref : "UserModel"}
+        userId:{type: mongoose.Schema.Types.ObjectId, ref : "UserModel"},
 
-
+        dateCreated : {type:Date,default:Date.now()}
         // widgets : [{type: mongoose.Schema.Types.ObjectId, ref:'WidgetModel'}]
         // role: {type: String, enum: ['ADMIN', 'STUDENT', 'FACULTY']},
         // websites: [WebsiteSchema],

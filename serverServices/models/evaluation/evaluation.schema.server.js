@@ -13,7 +13,8 @@ module.exports = function() {
         DOI1:String,
         DOI2:String,
         dateCreated : {type:Date,default:Date.now()},
-        userId:{type: mongoose.Schema.Types.ObjectId, ref : "UserModel"}
+        userId:{type: mongoose.Schema.Types.ObjectId, ref : "UserModel"},
+        username:String
 
         // widgets : [{type: mongoose.Schema.Types.ObjectId, ref:'WidgetModel'}]
         // role: {type: String, enum: ['ADMIN', 'STUDENT', 'FACULTY']},

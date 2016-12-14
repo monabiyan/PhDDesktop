@@ -34,7 +34,7 @@
         vm.title=$routeParams.title;
         vm.noteId=$routeParams.noteId;
 
-
+        console.log('jhg');
 
 
 

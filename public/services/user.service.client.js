@@ -61,8 +61,10 @@
             return $http.delete(url);
         }
 
-        function addDOItoUser(userId,DOI){
-            var url="/api/user/addDOI/" +userId+"/"+DOI;
+        function addDOItoUser(userId,DOI,Title){
+            console.log('Taghi');
+            // console.log(Title);
+            var url="/api/user/addDOI/" +userId+"/"+DOI+"/"+Title;
             return $http.put(url);
         }
 

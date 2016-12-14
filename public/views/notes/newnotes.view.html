@@ -1,42 +1,62 @@
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Scholar Search</a>
-
-            <!--<ul class="nav navbar-nav">-->
-            <!--<li class="active"><a href="#">Home</a></li>-->
-            <!--<li><a href="#">Page 1</a></li>-->
-            <!--<li><a href="#">Page 2</a></li>-->
-            <!--</ul>-->
-            <ul class="nav navbar-nav navbar-right">
-                <div ng-switch="model.loggedin">
-                    <li ng-switch-when=false><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    <li ng-switch-when=true>
-                        <a href="#/landing"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-                        <a href="#/login"><span class="navbar-brand "></span> {{model.username}}</a>
-                    </li>
-                </div>
-            </ul>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid color: black">
+        <div class="navbar-header padding-top-half">
+            <a class="navbar-brand" href="#">PHDdesktop</a>
         </div>
+
+        <ul class="nav navbar-nav navbar-right padding-top-one  margin-right-one">
+            <!--<li><a href="#/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>-->
+            <div ng-switch="model.loggedin">
+                <li ng-switch-when=false><a href="#/login" class="white"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li ng-switch-when=true class="margin-right-one">
+                    <a ng-href=" #/author/{{model.userId}}"><span class="navbar-brand "></span> {{model.username}}</a>
+                    <!--<p ng-click="model.goToAuthorSummary()"><span class="navbar-brand "></span> As Author</p>-->
+                    <a href="#/landing"><span class="glyphicon glyphicon-log-out margin-left-one"></span> Logout</a>
+                </li>
+            </div>
+        </ul>
+
     </div>
 </nav>
 
+<div class="container padding-top-tow">
 
-<div class="container padding-top-three">
-    <label for="name">Note</label>
+    <h3>Note for:</h3>
+    <h2 class="text-center colororange">{{model.article_name}}</h2>
+    <br><br>
+
+    <label for="name">Subject</label>
     <textarea
 
             type="text"
-            rows="10"
+            rows="1"
             id="name"
+            ng-model="model.note.name"
+            value="{{model.note.name}}"
+            class="form-control">
+    </textarea>
+
+
+    <br>
+    <label for="content">Note</label>
+    <textarea
+
+            type="text"
+            rows="8"
+            id="content"
             ng-model="model.note.content"
             value="{{model.note.content}}"
             class="form-control">
     </textarea>
 
-    <div style="margin-top: 4em">
+    <div style="margin-top: 2em">
         <a ng-click="model.createNote()"
-           class="btn btn-primary btn-block">Submit</a>
+           class="btn btn-primary btn-block fa fa-check">&nbsp &nbsp Submit &nbsp &nbsp</a>
+    </div>
+
+    <div style="margin-top: 1em">
+        <a ng-click="model.createNote()"
+           class="btn btn-danger btn-block fa fa-ban">&nbsp &nbsp Cancel &nbsp &nbsp</a>
     </div>
     {{model}}
 

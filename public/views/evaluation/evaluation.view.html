@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Scholar Search</a>
@@ -26,95 +26,78 @@
 <div class="container-fluid">
 
 
-    <h1>
-        <a ng-click="model.goBackToSearchPage(model.title,model.pagenumber)" >
-            <span class="glyphicon glyphicon-chevron-left" style="color:#7252ff"></span>
-        </a>
-
-    </h1>
 
 
     <div class="row">
-        <div class="col-xs-8">
+
             <div>
-                <h2> {{model.article.message.title[0]}}</h2>
+                <h3 class=" "  style="color: #122b40">What is your idea about :  </h3>
             </div>
 
             <div>
-                <h4>Author:   {{model.article.message.author[0].given}} {{  }}{{model.article.message.author[0].family}}</h4>
+                <h2 class="text-center colororange"> {{model.article.message.title[0]}}</h2>
             </div>
 
             <div>
-                Type: {{model.article.message.type}}
-            </div>
-
-            <div>
-                Year: {{model.article.message.indexed["date-parts"][0][0]}}
-            </div>
-
-            <div>
-                Subject: {{model.article.message.subject[0]}}
-            </div>
-
-            <div>
-                URL: {{model.article.message.URL}}
-            </div>
-
-
-
-            <div>
-                Publisher: {{model.article.message.publisher}}
+                <h3 class="text-center">By:   {{model.article.message.author[0].given}} {{  }}{{model.article.message.author[0].family}}</h3>
             </div>
 
 
         </div>
-        <div class="col-xs-4">
-            <img ng-src="{{model.article.Poster}}" height="300px">
-        </div>
+
+
+
 
     </div>
 
+<br><br><br>
+
+<table class="table ">
+    <thead class="thead-inverse ">
+    <tr>
+        <th>Quality of research</th>
+        <th>Relevance To your research</th>
+        <th>Easy To Understand</th>
+        <th>How Excited you are with this paper?</th>
+        <!--<th>Image</th>-->
+    </tr>
+    </thead>
+    <tbody>
 
 
-    <div class="padding-top-three">
-        <h6> Quality of research</h6>
-        <select class=" form-control" ng-model="model.eval1" ng-options="color for color in model.colors">
+
+    <tr >
+
+        <td><select class=" form-control" ng-model="model.eval1" ng-options="color for color in model.colors">
+
+        </select></td>
+
+        <td>
+            <select class=" form-control" ng-model="model.eval2" ng-options="color for color in model.colors">
 
         </select>
-    </div>
+        </td>
+        <td><select class=" form-control" ng-model="model.eval3" ng-options="color for color in model.colors">
 
-
-    <div class="padding-top-three">
-        <h6> Easy To Understand</h6>
-        <select class=" form-control" ng-model="model.eval2" ng-options="color for color in model.colors">
-
-        </select>
-    </div>
-
-    <div class="padding-top-three">
-        <h6> Good English</h6>
-        <select class=" form-control" ng-model="model.eval3" ng-options="color for color in model.colors">
+        </select></td>
+        <td><select class=" form-control" ng-model="model.eval4" ng-options="color for color in model.colors">
 
         </select>
+
+
+    </tr>
+
+    </tbody>
+</table>
+
+
+
+
+    <div class="padding-top-tow">
+        <a ng-click="model.saveAndBackToDetails() " class="btn btn-primary btn-block ">Save </a>
     </div>
-
-    <div class="padding-top-three">
-        <h6> Relevance To your research</h6>
-        <select class=" form-control" ng-model="model.eval4" ng-options="color for color in model.colors">
-
-        </select>
-    </div>
-
-
-
-
-
-
-    <div class="padding-top-three">
-        <a ng-click="model.saveAndBackToDetails() " class="btn btn-primary btn-block ">Save Evaluation</a>
-    </div>
-    <div class="padding-top-three">
-        <a ng-click="model.cancel()" class="btn btn-success btn-block">Cancel</a>
+    <div class="padding-top-one">
+        <a ng-click="model.cancel()" class="btn btn-danger btn-block">Cancel</a>
     </div>
 
 

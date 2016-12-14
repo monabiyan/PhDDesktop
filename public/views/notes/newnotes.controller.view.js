@@ -27,8 +27,8 @@
         vm.pagenumber=$routeParams.pagenumber;
         vm.title=$routeParams.title;
 
-
-        vm.note={userId:vm.userId,DOI1:vm.DOI1,DOI2:vm.DOI2}
+        vm.article_name=$routeParams.article_name;
+        vm.note={userId:vm.userId,DOI1:vm.DOI1,DOI2:vm.DOI2,article_name:vm.article_name};
 
 
         function init(){

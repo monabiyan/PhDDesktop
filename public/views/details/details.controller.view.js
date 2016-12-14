@@ -19,9 +19,12 @@
         vm.goToEditNote = goToEditNote;
         vm.updateColor = updateColor;
         vm.goToEvaluationPage=goToEvaluationPage;
+        vm.authorshipRequest=authorshipRequest;
+
         vm.checkAuthor=checkAuthor;
         vm.DOI1 = $routeParams.DOI1;
         vm.DOI2 = $routeParams.DOI2;
+
 
         vm.DOI = vm.DOI1 + '/' + vm.DOI2;
 
@@ -31,8 +34,10 @@
 
         vm.userId = $routeParams.userId;
         vm.loggedin = false;
+        vm.authorship_request=false;
 
         vm.colors = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+        // vm.article_title=vm.article.message.title[0];
 
 
         function init1() {
@@ -53,7 +58,7 @@
 
 
         function init2() {
-            var url = "http://api.crossref.org/works/DOI:" + vm.DOI;
+            var url = "https://api.crossref.org/works/DOI:" + vm.DOI;
             response = MitService.searchArticleByDOIID(url);
             response
                 .success(function (result) {
@@ -130,7 +135,7 @@
                 //
                 //     vm._articleId=article._id;
                 //
-                $location.url("/newnote/" + vm.DOI1 + "/" + vm.DOI2 + "/" + vm.title + "/" + vm.pagenumber + "/" + vm.userId);
+                $location.url("/newnote/" + vm.DOI1 + "/" + vm.DOI2 + "/" + vm.title + "/" + vm.pagenumber + "/" + vm.userId+"/"+vm.article.message.title[0]);
 
             }
 
@@ -162,6 +167,7 @@
                     ColorService.createColor(cc).success(function (colorObj2) {
                         console.log('hamid');
                         console.log(colorObj2);
+                        vm.color_selected=color_value;
                     });
 
                 }
@@ -171,7 +177,12 @@
 
                                     console.log('iman');
                                     console.log(colorObj2);
-                                    return('0')
+                            vm.color_selected=color_value;
+                            // $location.url("/details/"+vm.DOI1 + "/" + vm.DOI2 +"/"+vm.title+"/"+vm.pagenumber+"/"+vm.userId);
+                            window.location.reload();
+                            return('0')
+
+
                                 }
                                 )}
             });}
@@ -182,7 +193,7 @@
             }
             if (vm.loggedin == true) {
 
-                $location.url("/evaluation/" + vm.DOI1 + "/" + vm.DOI2 + "/" + vm.title + "/" + vm.pagenumber + "/" + vm.userId);
+                $location.url("/evaluation/" + vm.DOI1 + "/" + vm.DOI2 + "/" + vm.title + "/" + vm.pagenumber + "/" + vm.userId+"/"+vm.username);
 
             }
         }
@@ -192,6 +203,16 @@
                 console.log(userObj);
             })
         }
+
+        function authorshipRequest() {
+            vm.authorship_request=!vm.authorship_request;
+            return(true)
+        }
+
+
+
+
+
 
         function checkAuthor(info){
 
@@ -203,13 +224,17 @@
 
                     console.log('Its right');
                     DOI=vm.DOI1+"/"+vm.DOI2;
-                    UserService.addDOItoUser(vm.userId,DOI).success(function(userObj){
+
+                    UserService.addDOItoUser(vm.userId,DOI,vm.article.message.title[0]).success(function(userObj){
                         console.log(userObj);
-                        $location.url("/evaluation/" + vm.DOI1 + "/" + vm.DOI2 + "/" + vm.title + "/" + vm.pagenumber + "/" + vm.userId);
+                        // $location.url("/details/" + vm.DOI1 + "/" + vm.DOI2 + "/" + vm.title + "/" + vm.pagenumber + "/" + vm.userId);
+                        vm.authorship_request=false;
+                        vm.DOIcheck=true;
                     });
                     // $location.url("/evaluation/" + vm.DOI1 + "/" + vm.DOI2 + "/" + vm.title + "/" + vm.pagenumber + "/" + vm.userId);
                 }
                 if (info!=(vm.DOI1+"/"+vm.DOI2)) {
+                    vm.DOIcheck=false;
                     console.log('Its wrong!!');
                     // $location.url("/evaluation/" + vm.DOI1 + "/" + vm.DOI2 + "/" + vm.title + "/" + vm.pagenumber + "/" + vm.userId);
                 }

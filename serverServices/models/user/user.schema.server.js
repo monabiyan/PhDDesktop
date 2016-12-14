@@ -11,7 +11,7 @@ module.exports = function() {
         lastName: String,
         email:String,
         phone:String,
-        dateCreated : {type:Date,ref:Date.now()},
+        dateCreated : {type:Date,default:Date.now()},
         // role: {type: String, enum: ['ADMIN', 'STUDENT', 'FACULTY']},
         notes: [{type: mongoose.Schema.Types.ObjectId, ref:'NoteModel'}],
         DOIs:[String]
